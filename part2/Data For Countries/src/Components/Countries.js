@@ -8,7 +8,22 @@ Countries.propTypes = {
 
 function Countries({countries}) {
     return (
-        <ul>{countries.map(country => <Country key={country.numericCode} name={country.name}/>)}</ul>
+        <>
+            {countries.length > 1 ? 
+                <ul>{countries.map(country => <li key={country.numericCode}>{country.name}</li>)}</ul>
+                :<ul>{countries.map(country => 
+                    (<li key={country.numericCode}> 
+                        <Country  
+                            name={country.name} 
+                            flag={country.flag} 
+                            capital={country.capital}
+                            languages={country.languages}
+                            population={country.population}
+                        />
+                    </li>)
+                )} </ul>
+            }
+        </>
     );
 }
 
