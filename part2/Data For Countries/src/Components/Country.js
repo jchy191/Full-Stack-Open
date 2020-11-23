@@ -1,9 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-function Country({name, capital, flag, languages, population}) {
+function Country(props) {
+
+    const [isOpen, setIsOpen]= useState(false);
+    
     return (
-        <div className="country">
-            <h3>{name}</h3>
+        <>
+            <h3>{props.name} <button onClick={() => {setIsOpen(!isOpen)}}>{isOpen ? "Hide" : "Show"}</button></h3>
+            {isOpen && <CountryCard {...props}/>}
+        </>
+
+    )
+}
+
+function CountryCard({name, capital, flag, languages, population}) {
+
+    return (
+        <div className="country-card">
             <p>Capital: {capital}</p>
             <p>Population: {population}</p>
             <p>Languages:</p>
@@ -18,3 +31,4 @@ function Country({name, capital, flag, languages, population}) {
 }
 
 export default Country;
+

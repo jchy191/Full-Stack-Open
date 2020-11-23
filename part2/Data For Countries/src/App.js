@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Countries from './Components/Countries';
+import './App.css';
 
 function App() {
 
@@ -9,7 +10,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get('https://restcountries.eu/rest/v2/all')
+      .get('https://restcountries.eu/rest/v2/all', {timeout: 100000})
       .then(response => {
         console.log("success!");
         setCountries(response.data)
@@ -29,10 +30,12 @@ function App() {
     <div className="App">
       <h1>Country Data</h1>
       <form>
-        <label>Find Countries:</label><input value={searchValue} onChange={handleChange}/>
+        <label>Find Countries: </label><input value={searchValue} onChange={handleChange}/>
       </form>
-      {countriesToShow.length <= 10 ? <p>Less than 10 countries</p> : <p>More than 10 countries</p>}
-      <Countries countries={countriesToShow}/>
+      {countriesToShow.length > 10 ? 
+        <p>Too many countries, please add search filter.</p>
+        :<Countries countries={countriesToShow}/>
+      }
     </div>
   );
 }
