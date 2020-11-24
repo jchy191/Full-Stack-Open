@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Countries from './Components/Countries';
 import './App.css';
+import SearchForm from './Components/SearchForm';
 
 function App() {
 
@@ -29,13 +30,8 @@ function App() {
   return (
     <div className="App">
       <h1>Country Data</h1>
-      <form>
-        <label>Find Countries: </label><input value={searchValue} onChange={handleChange}/>
-      </form>
-      {countriesToShow.length > 10 ? 
-        <p>Too many countries, please add search filter.</p>
-        :<Countries countries={countriesToShow}/>
-      }
+      <SearchForm handleChange={handleChange} searchValue={searchValue}/>
+      <Countries countries={countriesToShow}/>
     </div>
   );
 }
