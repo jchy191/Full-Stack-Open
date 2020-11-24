@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Country from './Country';
 
@@ -7,7 +7,6 @@ Countries.propTypes = {
 };
 
 function Countries({countries}) {
-    
 
     return (
         <ul>{countries.map(country => 
